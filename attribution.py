@@ -33,9 +33,9 @@ def compute_effect(model, x, y_pred, batch_size, patch_size, p_masks, pi_generat
             
             masks = np.zeros((n_mask, N))
             default_val = np.ones((n_mask, 3, N)) * base[:, None] 
-            for i in range(n_mask):
-                masks[i, pi_np[:(start+i)]] = 1
-                default_val[i, :, pi_np[:(start+i)]] = 0
+            for j in range(n_mask):
+                masks[j, pi_np[:(start+j)]] = 1
+                default_val[j, :, pi_np[:(start+j)]] = 0
     
             masks = resize(torch.Tensor(masks).reshape(-1, patch_size[0], patch_size[1])).unsqueeze(1)
             default_val = resize(torch.Tensor(default_val).reshape(-1, 3, patch_size[0], patch_size[1]))
